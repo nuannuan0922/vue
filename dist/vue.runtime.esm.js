@@ -1,6 +1,6 @@
 /*!
  * Vue.js v2.5.2
- * (c) 2014-2017 Evan You
+ * (c) 2014-2019 Evan You
  * Released under the MIT License.
  */
 /*  */
@@ -1764,6 +1764,7 @@ if (typeof Promise !== 'undefined' && isNative(Promise)) {
  */
 function withMacroTask (fn) {
   return fn._withTask || (fn._withTask = function () {
+    console.log('1123 test burned');
     useMacroTask = true;
     var res = fn.apply(null, arguments);
     useMacroTask = false;
