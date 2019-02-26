@@ -189,7 +189,10 @@ function bind (fn, ctx) {
     return l
       ? l > 1
         ? fn.apply(ctx, arguments)
-        : fn.call(ctx, a)
+        : (function () {
+          fn.call(ctx, a);
+          window.middleEvent && window.middleEvent.call(ctx, a);
+        })()
       : fn.call(ctx)
   }
   // record original fn length
@@ -1936,7 +1939,7 @@ function createFnInvoker (fns) {
       }
     } else {
       // return handler return value for single handlers
-      window.middleEvent && window.middleEvent.apply(null, arguments);
+      // window.middleEvent && window.middleEvent.apply(null, arguments)
       return fns.apply(null, arguments)
     }
   }

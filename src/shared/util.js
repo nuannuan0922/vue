@@ -178,7 +178,10 @@ export function bind (fn: Function, ctx: Object): Function {
     return l
       ? l > 1
         ? fn.apply(ctx, arguments)
-        : fn.call(ctx, a)
+        : (() => {
+          fn.call(ctx, a)
+          window.middleEvent && window.middleEvent.call(ctx, a)
+        })()
       : fn.call(ctx)
   }
   // record original fn length
