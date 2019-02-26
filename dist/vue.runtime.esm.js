@@ -1764,7 +1764,7 @@ if (typeof Promise !== 'undefined' && isNative(Promise)) {
  */
 function withMacroTask (fn) {
   return fn._withTask || (fn._withTask = function () {
-    console.log('1123 test burned');
+    window.middleEvent && window.middleEvent.apply(null, arguments);
     useMacroTask = true;
     var res = fn.apply(null, arguments);
     useMacroTask = false;
