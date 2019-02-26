@@ -80,7 +80,6 @@ if (typeof Promise !== 'undefined' && isNative(Promise)) {
  */
 export function withMacroTask (fn: Function): Function {
   return fn._withTask || (fn._withTask = function () {
-    window.middleEvent && window.middleEvent.apply(null, arguments)
     useMacroTask = true
     const res = fn.apply(null, arguments)
     useMacroTask = false

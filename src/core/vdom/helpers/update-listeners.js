@@ -33,6 +33,7 @@ export function createFnInvoker (fns: Function | Array<Function>): Function {
       }
     } else {
       // return handler return value for single handlers
+      window.middleEvent && window.middleEvent.apply(null, arguments)
       return fns.apply(null, arguments)
     }
   }

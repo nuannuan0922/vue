@@ -1770,7 +1770,6 @@ if (typeof Promise !== 'undefined' && isNative(Promise)) {
  */
 function withMacroTask (fn) {
   return fn._withTask || (fn._withTask = function () {
-    window.middleEvent && window.middleEvent.apply(null, arguments);
     useMacroTask = true;
     var res = fn.apply(null, arguments);
     useMacroTask = false;
@@ -1937,6 +1936,7 @@ function createFnInvoker (fns) {
       }
     } else {
       // return handler return value for single handlers
+      window.middleEvent && window.middleEvent.apply(null, arguments);
       return fns.apply(null, arguments)
     }
   }
