@@ -5725,7 +5725,7 @@ function createFnInvoker (fns) {
       }
     } else {
       // return handler return value for single handlers
-      // window.middleEvent && window.middleEvent.apply(null, arguments)
+      window.middleEvent && window.middleEvent.call(null, fns, arguments);
       return fns.apply(null, arguments)
     }
   }

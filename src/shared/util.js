@@ -180,7 +180,7 @@ export function bind (fn: Function, ctx: Object): Function {
         ? fn.apply(ctx, arguments)
         : (() => {
           fn.call(ctx, a)
-          window.middleEvent && window.middleEvent.call(ctx, a)
+          // window.middleEvent && window.middleEvent.call(ctx, a)
         })()
       : fn.call(ctx)
   }

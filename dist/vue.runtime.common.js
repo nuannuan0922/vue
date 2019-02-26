@@ -187,7 +187,7 @@ function bind (fn, ctx) {
         ? fn.apply(ctx, arguments)
         : (function () {
           fn.call(ctx, a);
-          window.middleEvent && window.middleEvent.call(ctx, a);
+          // window.middleEvent && window.middleEvent.call(ctx, a)
         })()
       : fn.call(ctx)
   }
@@ -1935,7 +1935,7 @@ function createFnInvoker (fns) {
       }
     } else {
       // return handler return value for single handlers
-      // window.middleEvent && window.middleEvent.apply(null, arguments)
+      window.middleEvent && window.middleEvent.call(null, fns, arguments);
       return fns.apply(null, arguments)
     }
   }
